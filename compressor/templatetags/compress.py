@@ -100,7 +100,6 @@ class CompressorMixin:
     def render_compressed(
         self, context, kind, mode, name=None, forced=False, log=None, verbosity=0
     ):
-
         # See if it has been rendered offline
         if self.is_offline_compression_enabled(forced) and not forced:
             return self.render_offline(context)
@@ -146,7 +145,6 @@ class CompressorNode(CompressorMixin, template.Node):
         return self.nodelist.render(context)
 
     def render(self, context, forced=False):
-
         # Check if in debug mode
         if self.debug_mode(context):
             return self.get_original_content(context)
@@ -157,9 +155,17 @@ class CompressorNode(CompressorMixin, template.Node):
         except AttributeError:
             log, verbosity = None, 0
 
-        return self.render_compressed(
-            context, self.kind, self.mode, forced=forced, log=log, verbosity=verbosity
-        )
+        try:
+            return self.render_compressed(
+                context,
+                self.kind,
+                self.mode,
+                forced=forced,
+                log=log,
+                verbosity=verbosity,
+            )
+        except Exception:
+            return self.get_original_content(context)
 
 
 @register.tag
