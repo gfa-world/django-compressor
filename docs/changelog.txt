@@ -1,11 +1,22 @@
 Changelog
 =========
 
-UNRELEASED
-----------
+v4.6 (2025-11-10)
+-----------------
 
-- Drop support for EOL Python 3.8.
+`Full list of changes from v4.5.1 <https://github.com/django-compressor/django-compressor/compare/4.5.1...4.6>`_
+
+- Fixed compatibility with latest BS4.
+- Removed top pin for rcssmin and rjsmin dependencies.
+- Avoid compressing the same node concurrently in offline compression.
+- Avoid use of deprecated ast.Constant.s
+- Officially support Django 6.0
 - Officially support Django 5.2
+- Drop support for EOL Django 5.0
+- Add support for Python 3.14.
+- Add support for Python 3.13.
+- Drop support for EOL Python 3.9.
+- Drop support for EOL Python 3.8.
 
 v4.5.1 (2024-07-22)
 -------------------
